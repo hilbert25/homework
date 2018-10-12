@@ -32,9 +32,9 @@
 
 <link rel="stylesheet" href="./page/assets/css/style.css">
 <script src="./page/assets/js/jquery.min.js"></script>
-
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/1.8.1/fingerprint2.min.js"></script>
 </head>
-
 <body>
 	<!-- [if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
@@ -60,9 +60,12 @@
 						type="file" class="myFileUpload" name="image"
 						accept="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
 					<p class="upload_info"
-						style="position: absolute; top: 10%; left: 40%; font-size:18px;">(仅限doc docx
-						pdf)</p>
+						style="position: absolute; top: 10%; left: 40%; font-size: 18px;">(仅限doc
+						docx pdf)</p>
 					<div class="show"></div>
+				</div>
+				<div class="module">
+					<input type="text" value="123" name="fingerPrint" id="fingerPrint">
 				</div>
 				<div class="module">
 					<button type="submit">提交</button>
@@ -124,6 +127,48 @@
 								})
 							})
 						})
+
+		if (window.requestIdleCallback) {
+			requestIdleCallback(function() {
+				new Fingerprint2().get(function(result, components) {
+					fingerPrint = JSON.stringify(components);
+					//console.log(typeof (result)) // a hash, representing your device fingerprint
+					//console.log(JSON.stringify(components)) // an array of FP components
+					//console.log(fingerPrint);
+					console.log(fingerPrint);
+					document.getElementById("fingerPrint").value = fingerPrint;
+					senFingerPrint(fingerPrint);
+				})
+			})
+		} else {
+			setTimeout(function() {
+				new Fingerprint2().get(function(result, components) {
+
+				})
+			}, 500)
+		}
+		function senFingerPrint(fingerPrint) {
+			$.ajax({
+				url : "http://localhost:8080/homework/test",
+				type : "POST",
+				dataType : "json",
+				data : {
+					"fingerPrint" : fingerPrint
+				},
+				async : false,
+				success : function(data) {
+					//alert("success");
+					//$.each(data, function(index, element) {
+					//alert(element.a);
+					//alert(element.b);
+					//alert(element.c);
+					//});
+				},
+				error : function() {
+
+				}
+			});
+		}
 	</script>
 </body>
 

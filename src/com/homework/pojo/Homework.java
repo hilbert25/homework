@@ -8,18 +8,7 @@ public class Homework {
 	private String homeWorkPath;
 	private String homeWorkSubmitTime;
 	private int homeWorkIndex;
-
-//	public Homework(int id, int stuId, String stuName, String homeWorkTitle, String homeWorkPath,
-//			String homeWorkSubmitTime, int homeWorkIndex) {
-//		super();
-//		this.id = id;
-//		this.stuId = stuId;
-//		this.stuName = stuName;
-//		this.homeWorkTitle = homeWorkTitle;
-//		this.homeWorkPath = homeWorkPath;
-//		this.homeWorkSubmitTime = homeWorkSubmitTime;
-//		this.homeWorkIndex = homeWorkIndex;
-//	}
+	private String fingerPrint;
 
 	public int getId() {
 		return id;
@@ -75,6 +64,14 @@ public class Homework {
 
 	public void setHomeWorkIndex(int homeWorkIndex) {
 		this.homeWorkIndex = homeWorkIndex;
+	}
+
+	public String getFingerPrint() {
+		return fingerPrint;
+	}
+
+	public void setFingerPrint(String fingerPrint) {
+		this.fingerPrint = fingerPrint;
 	}
 
 }

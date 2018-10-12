@@ -7,9 +7,9 @@
 	<insert id="add" parameterType="Homework">
 		insert into homework (
 		stuId,stuName,
-		homeWorkTitle,homeWorkPath,homeWorkSubmitTime,homeWorkIndex) values
+		homeWorkTitle,homeWorkPath,homeWorkSubmitTime,homeWorkIndex,fingerPrint) values
 		(#{stuId},#{stuName},
-		#{homeWorkTitle},#{homeWorkPath},#{homeWorkSubmitTime},#{homeWorkIndex})
+		#{homeWorkTitle},#{homeWorkPath},#{homeWorkSubmitTime},#{homeWorkIndex},#{fingerPrint})
 	</insert>
 	<select id="searchMyHomeWork" parameterType="hashmap"
 		resultType="Homework">
