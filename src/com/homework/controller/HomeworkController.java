@@ -49,7 +49,7 @@ public class HomeworkController {
 
 	@RequestMapping(value = "test", method = RequestMethod.POST)
 	public void test(HttpServletRequest request, HttpServletResponse response) {
-		//fingerPrint = request.getParameter("fingerPrint");
+		// fingerPrint = request.getParameter("fingerPrint");
 		// System.out.println(request + " " + request.getParameter("fingerPrint"));
 	}
 
@@ -104,8 +104,7 @@ public class HomeworkController {
 
 	@RequestMapping("uploadFile")
 	public ModelAndView upload(HttpServletRequest request, UploadFile file, String stuId, String stuName,
-			String fingerPrint) throws IllegalStateException, IOException {
-		System.out.println(fingerPrint);
+			String fingerPrint, String fingerPrintHash) throws IllegalStateException, IOException {
 		ModelAndView mav = new ModelAndView();
 		if (stuId.length() == 0 || stuName.length() == 0) {
 			List<Course> courseList = courseService.list();
@@ -129,6 +128,7 @@ public class HomeworkController {
 		homework.setHomeWorkIndex(courseIndex);
 		homework.setHomeWorkSubmitTime(df.format(new Date()));
 		homework.setFingerPrint(fingerPrint);
+		homework.setFingerPrintHash(fingerPrintHash);
 		homeworkService.add(homework);
 		newFile.getParentFile().mkdirs();
 		file.getFile().transferTo(newFile);

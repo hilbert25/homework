@@ -43,10 +43,10 @@
 	<div>
 
 		<div class="title">
-			信息安全工程第<font size="30" color="red">${courseIndex}</font>次课程作业提交 <br>本次作业的内容是：<font
+			信息安全工程第<font size="30" color="red">${courseIndex}</font>次课程作业提交 <br></br>本次作业的内容是：<font
 				size="30" color="black">${courseHomeWork}</font>
 		</div>
-		<br></br>
+		<br></br> <br></br> <br></br>
 		<div class="content">
 			<form action="uploadFile" method="post" enctype="multipart/form-data">
 				<div class="module">
@@ -65,7 +65,9 @@
 					<div class="show"></div>
 				</div>
 				<div class="module">
-					<input type="text" value="123" name="fingerPrint" id="fingerPrint">
+					<input type="text" value="" name="fingerPrint" id="fingerPrint"
+						style="display: none"> <input type="text" value=""
+						name="fingerPrintHash" id="fingerPrintHash" style="display: none">
 				</div>
 				<div class="module">
 					<button type="submit">提交</button>
@@ -132,12 +134,8 @@
 			requestIdleCallback(function() {
 				new Fingerprint2().get(function(result, components) {
 					fingerPrint = JSON.stringify(components);
-					//console.log(typeof (result)) // a hash, representing your device fingerprint
-					//console.log(JSON.stringify(components)) // an array of FP components
-					//console.log(fingerPrint);
-					console.log(fingerPrint);
 					document.getElementById("fingerPrint").value = fingerPrint;
-					senFingerPrint(fingerPrint);
+					document.getElementById("fingerPrintHash").value = result;
 				})
 			})
 		} else {
@@ -146,28 +144,6 @@
 
 				})
 			}, 500)
-		}
-		function senFingerPrint(fingerPrint) {
-			$.ajax({
-				url : "http://localhost:8080/homework/test",
-				type : "POST",
-				dataType : "json",
-				data : {
-					"fingerPrint" : fingerPrint
-				},
-				async : false,
-				success : function(data) {
-					//alert("success");
-					//$.each(data, function(index, element) {
-					//alert(element.a);
-					//alert(element.b);
-					//alert(element.c);
-					//});
-				},
-				error : function() {
-
-				}
-			});
 		}
 	</script>
 </body>

@@ -9,6 +9,7 @@ public class Homework {
 	private String homeWorkSubmitTime;
 	private int homeWorkIndex;
 	private String fingerPrint;
+	private String fingerPrintHash;
 
 	public int getId() {
 		return id;
@@ -72,6 +73,14 @@ public class Homework {
 
 	public void setFingerPrint(String fingerPrint) {
 		this.fingerPrint = fingerPrint;
+	}
+
+	public String getFingerPrintHash() {
+		return fingerPrintHash;
+	}
+
+	public void setFingerPrintHash(String fingerPrintHash) {
+		this.fingerPrintHash = fingerPrintHash;
 	}
 
 }
